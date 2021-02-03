@@ -2,13 +2,9 @@ package ru.rkmv.services;
 
 import ru.rkmv.dto.Ticket;
 
-import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Calculate {
     /*
@@ -21,8 +17,6 @@ public class Calculate {
                 ticket.getDepartureDateTime().toEpochSecond(ZoneOffset.of(ticket.getOrigin().getTimezone()));
         if (time < 0)
             throw new RuntimeException("Время полета не может быть отрицательным");
-//        System.out.println(time);
-//        System.out.println(time / 60 / 60 + ":" + (time / 60) % 60);
         return time;
     }
 
@@ -51,11 +45,10 @@ public class Calculate {
 
 
         int countTimes = 0;
-        double procenil = 0.0;
         for (long tm : times) {
 
-            double newProcetal = 1.0 * (++countTimes) / times.size();
-            if(k <= newProcetal) {
+            double percentile = 1.0 * (++countTimes) / times.size();
+            if (k <= percentile) {
                 return tm;
             }
         }

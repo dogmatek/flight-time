@@ -8,20 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AppFlight {
-    public static final String UTF8_BOM = "\uFEFF";
 
     public static void main(String[] args) {
 
+        // парсер JSON
         List<Ticket> tickets = new ArrayList<>(
                 TicketService.getTicketsJson("tickets.json"));
-//        System.out.println(tickets);
 
+        // Расчет Среднего времени полета
         long averagTimeFlight = Calculate.averageTimeOfFlight(tickets);
         System.out.println("Среднее время полета: " + averagTimeFlight / 60 / 60 + " часов " + (averagTimeFlight / 60) % 60 + " минут");
 
-        long procentil = Calculate.PercentileTimeOfFlight(tickets, 0.90);
+        // Расчет процентиля
+        long percentile = Calculate.PercentileTimeOfFlight(tickets, 0.90);
         System.out.println( "90-й процентиль времени полета между городами  Владивосток и Тель-Авив = "
-                + procentil / 60 / 60 + " часов " + (procentil / 60) % 60 + " минут");
+                + percentile / 60 / 60 + " часов " + (percentile / 60) % 60 + " минут");
     }
 }
 

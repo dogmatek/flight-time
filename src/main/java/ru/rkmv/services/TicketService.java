@@ -17,6 +17,7 @@ import java.util.List;
 
 public class TicketService {
 
+    // Парсер Json
     public static List<Ticket> getTicketsJson(String filename) {
         List<Ticket> tickets = new ArrayList<>();
         JSONParser parser = new JSONParser();
@@ -37,9 +38,9 @@ public class TicketService {
             JSONObject jsonObject = (JSONObject) parser.parse(String.valueOf(buffer));
             JSONArray jsonTickets = (JSONArray) jsonObject.get("tickets");
 
-            for (int i = 0; i < jsonTickets.size(); i++) {
+            for (Object o : jsonTickets) {
 //                if (i > 2 ) break;
-                JSONObject jsonTicket = (JSONObject) jsonTickets.get(i);
+                JSONObject jsonTicket = (JSONObject) o;
                 /*
                 int j = 0;
                 System.out.println("origin = " + jsonTicket.get("origin"));
@@ -56,8 +57,8 @@ public class TicketService {
                 System.out.println("------------------------------");
                 */
                 Ticket ticket = new Ticket();
-                ticket.setOrigin(Source.valueOf(jsonTicket.get("origin").toString()) );
-                ticket.setDestination(Source.valueOf(jsonTicket.get("destination").toString()) );
+                ticket.setOrigin(Source.valueOf(jsonTicket.get("origin").toString()));
+                ticket.setDestination(Source.valueOf(jsonTicket.get("destination").toString()));
                 ticket.setDepartureDateTime(
                         LocalDateTime.parse(
                                 jsonTicket.get("departure_date") + " " + jsonTicket.get("departure_time"), DateTimeFormatter.ofPattern("d.M.y H:m")
