@@ -39,23 +39,7 @@ public class TicketService {
             JSONArray jsonTickets = (JSONArray) jsonObject.get("tickets");
 
             for (Object o : jsonTickets) {
-//                if (i > 2 ) break;
                 JSONObject jsonTicket = (JSONObject) o;
-                /*
-                int j = 0;
-                System.out.println("origin = " + jsonTicket.get("origin"));
-                System.out.println("origin_name = " + jsonTicket.get("origin_name"));
-                System.out.println("destination = " + jsonTicket.get("destination"));
-                System.out.println("destination_name = " + jsonTicket.get("destination_name"));
-                System.out.println("departure_date = " + jsonTicket.get("departure_date"));
-                System.out.println("departure_time = " + jsonTicket.get("departure_time"));
-                System.out.println("arrival_date = " + jsonTicket.get("arrival_date"));
-                System.out.println("arrival_time = " + jsonTicket.get("arrival_time"));
-                System.out.println("carrier = " + jsonTicket.get("carrier"));
-                System.out.println("stops = " + jsonTicket.get("stops"));
-                System.out.println("price = " + jsonTicket.get("price"));
-                System.out.println("------------------------------");
-                */
                 Ticket ticket = new Ticket();
                 ticket.setOrigin(Source.valueOf(jsonTicket.get("origin").toString()));
                 ticket.setDestination(Source.valueOf(jsonTicket.get("destination").toString()));

@@ -36,17 +36,14 @@ public class Calculate {
     /*
         Расчет процентиля времени полета
      */
-    public static long PercentileTimeOfFlight(List<Ticket> tickets, double k) {
+    public static long percentileTimeOfFlight(List<Ticket> tickets, double k) {
         List<Long> times = new ArrayList<>();
         for (Ticket ticket : tickets) {
             times.add(getTimeOfFlight(ticket));
         }
         times.sort(Long::compareTo);
-
-
         int countTimes = 0;
         for (long tm : times) {
-
             double percentile = 1.0 * (++countTimes) / times.size();
             if (k <= percentile) {
                 return tm;
