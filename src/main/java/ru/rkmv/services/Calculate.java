@@ -1,10 +1,12 @@
 package ru.rkmv.services;
 
+import javafx.print.Collation;
 import ru.rkmv.dto.Ticket;
 
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Calculate {
     /*

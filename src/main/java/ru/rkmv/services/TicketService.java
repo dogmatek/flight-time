@@ -24,7 +24,7 @@ public class TicketService {
         try (Reader reader = new FileReader(filename)) {
 
             // Удаляем символы до '{'.  Решение проблемы с BOM символом
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder buffer = new StringBuilder();
             int c;
             boolean fl = false;
             while ((c = reader.read()) != -1) {
